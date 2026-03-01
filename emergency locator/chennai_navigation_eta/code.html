@@ -1,0 +1,144 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e53a34",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211211",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header Section -->
+<header class="flex items-center justify-between border-b border-primary/20 px-6 py-4 lg:px-20 bg-background-light dark:bg-background-dark">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">Chennai Emergency Locator</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="#">Live Navigation</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Hospitals</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Emergency Contacts</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-slate-200/50 dark:bg-primary/10 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search hospitals..."/>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-bold text-sm tracking-wide transition-all shadow-lg shadow-primary/20">
+                        SOS EMERGENCY
+                    </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col relative">
+<!-- Navigation Breadcrumb -->
+<div class="flex items-center gap-2 px-6 py-3 lg:px-20 text-sm">
+<span class="text-slate-500">Home</span>
+<span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+<span class="text-primary font-medium">Chennai Live Navigation</span>
+</div>
+<!-- Map Container -->
+<div class="flex-1 relative mx-6 mb-6 lg:mx-20 rounded-xl overflow-hidden shadow-2xl border border-primary/10">
+<!-- Map Background -->
+<div class="absolute inset-0 bg-slate-300 dark:bg-slate-800" data-alt="Detailed city map of Chennai showing T.Nagar and RGGGH hospital" data-location="Chennai" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA12758dH2tjHJcu8K0EiFpcTGSyarPf_nR8z6EC4laBmPtpMw6xqXAbeIdqoiPmu_jdXxVXQPMKzhNHsBs5rnL4s2VAWUg8PeW_dyCgsiLZP-ZpG5l54DUNFblSOFMiuEv43npsptceQMbk0fHOOWHy2Ui_3_ApE9iZD006Ju5sd-VdGw_KbYSNCVVs5MQfmGIsL-mJvg_fAKO-lhJ9NOkeazCJvDDXHyGfu6ez-AzpNoSaHXgtuKFocYI5BvfB1xbxS-U634tOrA'); background-size: cover; background-position: center;">
+<!-- Simplified Route Overlay (Visual Representation) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 1000 1000">
+<path class="opacity-80" d="M300,700 Q450,550 500,400 T700,200" fill="none" stroke="#e53a34" stroke-dasharray="10,5" stroke-linecap="round" stroke-width="6"></path>
+<!-- User Location Marker -->
+<circle cx="300" cy="700" fill="#3b82f6" r="8" stroke="white" stroke-width="2"></circle>
+<!-- Destination Marker -->
+<circle cx="700" cy="200" fill="#e53a34" r="10" stroke="white" stroke-width="3"></circle>
+</svg>
+</div>
+<!-- Floating ETA Banner -->
+<div class="absolute top-6 left-1/2 -translate-x-1/2 w-full max-w-md px-4">
+<div class="bg-background-dark/95 backdrop-blur-md border border-primary/30 rounded-xl p-4 shadow-2xl flex items-center gap-4">
+<div class="bg-primary/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">traffic</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">ETA: 12 MINS</h3>
+<p class="text-slate-300 text-xs">Heavy traffic on Mount Road. Route optimized.</p>
+</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute right-6 top-6 flex flex-col gap-2">
+<button class="bg-background-dark/90 hover:bg-background-dark text-white p-3 rounded-lg shadow-xl backdrop-blur-sm border border-white/10 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="bg-background-dark/90 hover:bg-background-dark text-white p-3 rounded-lg shadow-xl backdrop-blur-sm border border-white/10 transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="mt-4 bg-primary text-white p-3 rounded-lg shadow-xl hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Bottom Navigation Card -->
+<div class="absolute bottom-6 left-6 right-6 lg:left-8 lg:right-auto lg:w-96">
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-6 shadow-2xl border border-primary/20">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-block bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2">Emergency Hub</span>
+<h4 class="text-xl font-bold dark:text-white">RGGGH Emergency Dept</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Poonamallee High Rd, Chennai</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">2.4 km</p>
+<p class="text-xs text-slate-500">Fastest Route</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mb-6">
+<div class="bg-slate-100 dark:bg-primary/5 p-3 rounded-lg border border-slate-200 dark:border-primary/10">
+<p class="text-[10px] uppercase text-slate-500 font-semibold mb-1">Ambulance</p>
+<p class="text-sm font-bold dark:text-white">Available</p>
+</div>
+<div class="bg-slate-100 dark:bg-primary/5 p-3 rounded-lg border border-slate-200 dark:border-primary/10">
+<p class="text-[10px] uppercase text-slate-500 font-semibold mb-1">ER Wait Time</p>
+<p class="text-sm font-bold dark:text-white">&lt; 5 mins</p>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary/30 transition-all active:scale-95">
+<span class="material-symbols-outlined">call</span>
+                                CALL HELPLINE (108)
+                            </button>
+<button class="w-full mt-3 bg-slate-200 dark:bg-primary/10 text-slate-700 dark:text-slate-300 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">navigation</span>
+                                Start Turn-by-Turn
+                            </button>
+</div>
+</div>
+<!-- Map Layers Toggle -->
+<div class="absolute bottom-6 right-6 flex items-center gap-2">
+<button class="bg-background-dark/80 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10 text-sm font-medium flex items-center gap-2 shadow-xl">
+<span class="material-symbols-outlined text-sm">layers</span>
+                            Traffic Layer: ON
+                        </button>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+```</body></html>

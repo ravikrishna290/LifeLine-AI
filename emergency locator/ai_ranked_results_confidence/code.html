@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Ranked Results &amp; Confidence - Emergency Locator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e53a34",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211211",
+                        "accent-gold": "#FFD700",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .golden-glow {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-primary/20 px-4 lg:px-40 py-3 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">LifeLine AI</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-primary/10">
+<div class="text-slate-500 dark:text-primary/60 flex items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-slate-400 dark:placeholder:text-primary/40 px-4 text-base font-normal" placeholder="Search resources..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden lg:flex items-center gap-8">
+<a class="hover:text-primary transition-colors text-sm font-medium" href="#">Hospitals</a>
+<a class="hover:text-primary transition-colors text-sm font-medium" href="#">Clinics</a>
+<a class="hover:text-primary transition-colors text-sm font-medium" href="#">Pharmacies</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-primary/20 text-slate-700 dark:text-slate-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-primary/20 text-slate-700 dark:text-slate-100">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-6 px-4">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6">
+<div class="animate-pulse rounded-xl border border-primary/40 bg-primary/10 p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">wifi_off</span>
+<div class="flex flex-col">
+<p class="text-primary text-base font-bold">Network Warning</p>
+<p class="text-slate-600 dark:text-primary/70 text-sm font-medium">Offline Mode: Showing Cached Results. Real-time availability may vary.</p>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-2 bg-primary text-white rounded-lg font-bold text-sm uppercase tracking-wider">
+                            Retry Connection
+                            <span class="material-symbols-outlined text-sm">refresh</span>
+</button>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 px-2">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight tracking-tight">AI-Ranked Results</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Top 5 medical facilities prioritized by urgency and proximity.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-primary/30 rounded-lg text-sm font-bold hover:bg-slate-50 dark:hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                            Refine Search
+                        </button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="golden-glow flex flex-col lg:flex-row items-stretch overflow-hidden rounded-xl bg-white dark:bg-primary/5 border border-accent-gold/40">
+<div class="relative w-full lg:w-1/3 min-h-[200px] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Modern city hospital main entrance building" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfbR4uKkwtU98Qi-AE7aesvGRoh5zLk8MOZj02Tyq8hYlh8RuQfrHXDmY_97MB7ZhhHoXpdLf-HWMu8DZaXjR-T4r-sa4ckoneBusCcCBogvxu-h2ChVfG8Lfa1K2kpnrCWnqyaiaaCckEMdXz1NXz8j1ydk1C0cyAadSeMh2ZOKOXJDP6yU-Dz6fd1L0VtvQL9S09zkHOY3zCz4cy7tZ-aoE1ilK-T-E0L6-JKqL6rni4Svtf9NJEL0veyY0iFMp8kVNRbMAB2Z8");'></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-accent-gold text-background-dark text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest shadow-lg">Recommended</span>
+<span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest shadow-lg">92% AI Confidence</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6 gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-2xl font-extrabold leading-tight">City Central Hospital</h3>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-green-500 text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">fiber_manual_record</span>
+                                                Live Availability: High
+                                            </span>
+<span class="text-slate-300 dark:text-slate-600">•</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Emergency Dept: Open 24/7</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-3xl font-black text-primary leading-none tracking-tighter">0.8 <span class="text-sm font-bold uppercase">KM</span></p>
+<p class="text-xs text-slate-400 font-bold uppercase mt-1 tracking-widest">Est. 4 mins</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-auto">
+<button class="flex items-center justify-center gap-3 h-14 bg-primary text-white rounded-lg text-lg font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">call</span>
+                                        Call Now
+                                    </button>
+<button class="flex items-center justify-center gap-3 h-14 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg text-lg font-black uppercase tracking-widest hover:opacity-90 transition-all shadow-lg">
+<span class="material-symbols-outlined">near_me</span>
+                                        Navigate
+                                    </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row items-stretch overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/10 hover:border-primary/30 transition-all">
+<div class="relative w-full lg:w-1/4 min-h-[160px]">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover grayscale-[40%]" data-alt="Specialized medical clinic interior hallway" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBe_mX3WlGmTR6c4TFhj9KI-fpx6wCdcSv5dt2pG4v_H1DPW4xVYPbkuLy9U2qXVZIS0LoPqfwjPgfGFl9pAQa2Rlv6VJRydPQZNfw_ZVNgjBssNCD29Ob-4giuJ3HgueHB--0zCiaHoqQ42OSLxF3i_eUiB68ArufIj60r99fHjMMdtMicdRZRdq-bwxE-q8dGxk2-TMfkf0X7gEUveFIcIeKrld3TLD_ZV1hPMiSIC1Y_Y227IWyPp8QVCkb7xkZUivz8q0IkBKo");'></div>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 backdrop-blur text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest">85% AI Confidence</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-5 gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold">St. Mary's Trauma Center</h3>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-amber-500 text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">fiber_manual_record</span>
+                                                Live Availability: Moderate
+                                            </span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-2xl font-black text-slate-700 dark:text-slate-300 leading-none">2.4 <span class="text-xs">KM</span></p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 bg-primary/10 text-primary rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">call</span>
+                                        Call
+                                    </button>
+<button class="flex items-center justify-center gap-2 h-12 border border-slate-200 dark:border-primary/20 text-slate-700 dark:text-slate-100 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">near_me</span>
+                                        Navigate
+                                    </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row items-stretch overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/10 hover:border-primary/30 transition-all">
+<div class="relative w-full lg:w-1/4 min-h-[160px]">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover grayscale-[40%]" data-alt="Regional medical facility parking and entrance" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtQVUv5Qt61l_4pngN8aHAc_MRhh_GsJwYmi578oz3XFyRwa9ZgtyzLgPUeGhoxc7m6784oek8HXgBgzeKyZ6FA9Sq3bOEWM0SR-KvI53sq46wRCtQe2zS8hNdCHzt4_FthWY9DYZnUtb0lL0237g9IP4y65dzQ-8xqWyReG_5k8kcSUEl5jw2MsunmkNmQxRgdb_gSrf8Rw8EiZC6suUBJeA4wzWkITXiyT-pUwdbHRzFHL56eb73HBOBRUCJWVX6ZFNXcqXwIA8");'></div>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 backdrop-blur text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest">78% AI Confidence</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-5 gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold">Westside Emergency Care</h3>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-green-500 text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">fiber_manual_record</span>
+                                                Live Availability: High
+                                            </span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-2xl font-black text-slate-700 dark:text-slate-300 leading-none">3.1 <span class="text-xs">KM</span></p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 bg-primary/10 text-primary rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">call</span>
+                                        Call
+                                    </button>
+<button class="flex items-center justify-center gap-2 h-12 border border-slate-200 dark:border-primary/20 text-slate-700 dark:text-slate-100 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">near_me</span>
+                                        Navigate
+                                    </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row items-stretch overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/10 hover:border-primary/30 transition-all">
+<div class="relative w-full lg:w-1/4 min-h-[160px]">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover grayscale-[40%]" data-alt="Pediatric and family health clinic entrance" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXj4L2DcyFrLAnWT94RflklEb-OEVkKjgSzDvGmEvNWIGBQqRv8mW_2QE6bxNhAlLMzxsicUjFxDhEjGNcrUcBhTpd-QjjwgY2Z6C7hXnFSOxzBzbmpL9y-2LedH5ShqhTtZmVB4a5zThRIY1iEeonpu_CuvBff7qD6nONoWFMsh4A5pOn3E-QIXsFruuvZS8RSmP-d_JG6z08FV6nnoKdwQTU84LPcN74Dh0CyClJ2xaCrVkhmb7QcxMLOww5QepvmynNN5e2Mso");'></div>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 backdrop-blur text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest">71% AI Confidence</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-5 gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold">North Hills Urgent Clinic</h3>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-red-500 text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">fiber_manual_record</span>
+                                                Live Availability: Critical
+                                            </span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-2xl font-black text-slate-700 dark:text-slate-300 leading-none">4.5 <span class="text-xs">KM</span></p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 bg-primary/10 text-primary rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">call</span>
+                                        Call
+                                    </button>
+<button class="flex items-center justify-center gap-2 h-12 border border-slate-200 dark:border-primary/20 text-slate-700 dark:text-slate-100 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">near_me</span>
+                                        Navigate
+                                    </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row items-stretch overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/10 hover:border-primary/30 transition-all opacity-75 hover:opacity-100">
+<div class="relative w-full lg:w-1/4 min-h-[160px]">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover grayscale" data-alt="Secondary medical building exterior" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqd47al6ABqhMa2THiCIwFzdXzJDUfphfj_nT3bgvssKQ83l49Z2TfzumJ_mS39BEUJulV-mXZeeIaFs8xkpVIVPnCy0GDvhFa7LfDI8nvR3L_uzAzwEtYI_65rMRE4qXcVAgl-SGgHD5kDWZ8S5QEp2CETtCLsKweJwzgarwNVBFTU6KaZwlY0eZc3dPfEkWMmozX7qkZmoj1hEkVQGfwLWvc5VpbcAMB4qzfAkB_sf6_N5DE7IybrQj5BafDDoft91l9w5xQqOU");'></div>
+<div class="absolute top-4 left-4">
+<span class="bg-slate-800/80 backdrop-blur text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest">64% AI Confidence</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-5 gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold">Riverside Medical Hub</h3>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1 text-slate-400 text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">fiber_manual_record</span>
+                                                Availability: Unknown
+                                            </span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-2xl font-black text-slate-700 dark:text-slate-300 leading-none">5.2 <span class="text-xs">KM</span></p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 bg-primary/10 text-primary rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">call</span>
+                                        Call
+                                    </button>
+<button class="flex items-center justify-center gap-2 h-12 border border-slate-200 dark:border-primary/20 text-slate-700 dark:text-slate-100 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">near_me</span>
+                                        Navigate
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center p-8">
+<button class="group flex items-center gap-3 px-8 py-4 bg-primary/10 dark:bg-primary/20 text-primary rounded-xl font-bold uppercase tracking-widest hover:bg-primary/20 transition-all">
+                            Show More Results
+                            <span class="material-symbols-outlined group-hover:translate-y-1 transition-transform">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 dark:border-primary/10 bg-white dark:bg-background-dark py-8 px-4 lg:px-40">
+<div class="max-w-[960px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3 text-primary/60 grayscale opacity-70">
+<span class="material-symbols-outlined">emergency</span>
+<p class="text-sm font-bold uppercase tracking-widest">LifeLine AI Emergency System</p>
+</div>
+<div class="flex gap-8 text-slate-400 text-xs font-bold uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

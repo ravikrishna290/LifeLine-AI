@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Search Error &amp; Offline State - Emergency Resource Locator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e53a34",
+                        "warning": "#F9A825",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211211",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Navigation Bar -->
+<header class="border-b border-primary/10 bg-background-light dark:bg-background-dark px-6 py-4 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+<h1 class="text-xl font-bold tracking-tight">ER Locator</h1>
+</div>
+<div class="hidden md:flex items-center bg-slate-200/50 dark:bg-primary/10 rounded-lg px-3 py-1.5 w-64 border border-transparent focus-within:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-500 dark:placeholder:text-slate-400" placeholder="Search hospitals..." type="text"/>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Resources</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Live Map</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">History</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all">
+                    Profile
+                </button>
+<div class="size-10 rounded-full bg-slate-300 dark:bg-slate-700 overflow-hidden border-2 border-primary/20">
+<div class="w-full h-full bg-cover bg-center" data-alt="User avatar placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBU5IQAOoKQ2lzpPDcuwEy74fagN6Fg0zJw0gnxUzhg7ZJx13EBvTW8M8O_7SUSiPr9PWP1f2eRHoK8yNuyKIRPdDuU8bMxleAWa_qJww5hvD8v4RDJjI9uRvDQtZSQgt_TT3D2rV0YN142QuBA6eXNRrn7xCK58VmIwTXqRlKSLjgShhEdmpf2qrlh736FfC29eznEyzDGwwoUWRRwit5xCwqeJqFwkx_AMO9_jcBTATJvzqh-behiaMMFsc92Aa3oMSJtn6IUt0M')"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Offline Alert Banner -->
+<div class="bg-warning/10 border-b border-warning/30 px-6 py-3">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-warning animate-pulse">cloud_off</span>
+<div>
+<p class="text-warning text-sm font-bold uppercase tracking-wider">Offline Mode Active</p>
+<p class="text-slate-600 dark:text-slate-300 text-xs">Currently showing cached resource data from your last sync.</p>
+</div>
+</div>
+<button class="bg-warning text-background-dark text-xs font-bold px-4 py-1.5 rounded-lg hover:bg-warning/90 transition-all">
+                RECONNECT
+            </button>
+</div>
+</div>
+<!-- Main Content Area: Empty/Error State -->
+<main class="flex-grow flex flex-col items-center justify-center px-6 py-12">
+<div class="max-w-2xl w-full text-center space-y-8">
+<!-- Searching Eye Illustration Container -->
+<div class="relative mx-auto size-48 md:size-64 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative size-full rounded-2xl bg-slate-200/20 dark:bg-primary/5 flex items-center justify-center border border-primary/10 overflow-hidden">
+<span class="material-symbols-outlined text-8xl md:text-9xl text-primary/40">visibility</span>
+<!-- Decorative searching elements -->
+<div class="absolute top-4 left-4 size-4 rounded-full bg-primary/20"></div>
+<div class="absolute bottom-10 right-8 size-6 rounded-full border-2 border-primary/20"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-40 border border-primary/10 rounded-full"></div>
+</div>
+</div>
+<!-- Content -->
+<div class="space-y-4">
+<h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+                    No Resources Found
+                </h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto leading-relaxed">
+                    We couldn't find any emergency medical facilities in your immediate vicinity. This might be due to your current location or limited offline data.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+<button class="w-full sm:w-auto min-w-[240px] bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">distance</span>
+                    Increase Search Radius
+                </button>
+<button class="w-full sm:w-auto min-w-[240px] bg-slate-200 dark:bg-primary/10 hover:bg-slate-300 dark:hover:bg-primary/20 text-slate-900 dark:text-slate-100 px-8 py-4 rounded-xl font-bold text-lg border border-primary/20 flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">support_agent</span>
+                    Call Manual Helpline
+                </button>
+</div>
+<!-- Context Info -->
+<div class="pt-8 flex items-center justify-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-sm">Current Area: Austin, TX (5mi Radius)</span>
+<span class="mx-2 text-slate-300 dark:text-slate-700">|</span>
+<span class="text-sm">Last Sync: 12 mins ago</span>
+</div>
+</div>
+</main>
+<!-- Map Preview Placeholder -->
+<section class="px-6 pb-12">
+<div class="max-w-7xl mx-auto h-48 rounded-2xl bg-slate-200 dark:bg-primary/5 border border-primary/10 relative overflow-hidden flex items-center justify-center grayscale opacity-50">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Grayscale map background of Austin city" data-location="Austin" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBH14LkV8L15AMRWy_cUr1tAHHlr0ifnVXfEFnY7TQPNmaHzE2t2Aw5e32lxT430pflGL5Tt2yCBw9Eg5liqpW6ROCM8LD_r-w59Qh956KGtJdWKG0W1KqfeRcObH_ASpekeqW9r2GhbnI1bpoZ0vucZGo2jefGbXOu-Ix0-YayE4pIqokPD12Q3ksYWRFppoijyMYitBh656VkpPVxotQa5XdBkmhGyCKi7JxyL7fC31E5YyDGRaKy8GIJ-ayxHa7-m9B3nflq5fM')"></div>
+<div class="relative bg-background-light/90 dark:bg-background-dark/90 px-4 py-2 rounded-lg border border-primary/20 shadow-xl">
+<p class="text-xs font-bold uppercase text-primary tracking-widest">Map Unavailable in Offline Mode</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="border-t border-primary/10 bg-background-light dark:bg-background-dark/50 py-10 px-6 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-bold">ER Locator AI</span>
+</div>
+<p class="text-xs text-slate-500">© 2024 Emergency Resource AI. Rapid Medical Assistance.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary" href="#">Terms of Service</a>
+<a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary" href="#">Contact Support</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">rss_feed</span>
+</a>
+<a class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

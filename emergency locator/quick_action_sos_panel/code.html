@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quick Action SOS Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e53734",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211111",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .sos-gradient {
+            background: linear-gradient(180deg, rgba(229, 55, 52, 0) 0%, rgba(229, 55, 52, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="flex items-center justify-between border-b border-primary/20 bg-background-light dark:bg-background-dark px-6 md:px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">emergency</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">SOS Emergency Locator</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Emergency Contacts</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Medical Info</a>
+</nav>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:brightness-110 transition-all">
+                Profile
+            </button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="User profile avatar close up" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqQDf-FotLOTBVxZ0GzARCwukWDrKnV73a6pNjhX6oJJwkhWiuQ2FFUQ5TMXmE6H_cydv5q97dnfbj16r8J8Vr1XGwLXwJi802__fH3Upz6we_BbjmxKaj0mZ_jX1URbcE-10NBBRmd_zONO8vH2YBVPlygz4Nom08DU-cbN0yBxjmaPMy1KVluEAMkIM_NkwU-gMqIomdu4uxEWf-ZsL7BBVSiOvE1tOoifnvaSwxOIaHgYw-HreSFSWQTjykdc_-cn7poEiP8ms");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+<!-- Background Map Element (Subtle) -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" data-alt="Faint dark city map background" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeWYKE9cWLiQkFoFzRBp9pb4Lzw8L9oBxi0eBKxtWzNXoMBwbHisFU53Wiv1TQHUghbeMU1W9u0wICyl_d1AZW_pKeMODNBADYRgdh2yfypI4Yrw4L19ANTIE82obSSi-bnpWxaZylHhgyRFRiITFf8dwty6Xlan0TxiFuyaq7o31g1RKSlc_e1DBF-tIm1UGicjiU1tEF_VTp6RTQUkOQhmsjnx4hQV4JoPgBTH0IH0YpmRPb9xcTlwqU6WeE0xxgyWRpJoBmTy4'); background-size: cover;"></div>
+<div class="layout-content-container flex flex-col max-w-[640px] w-full flex-1 z-10">
+<div class="text-center space-y-4 mb-8">
+<h1 class="text-slate-900 dark:text-white text-4xl md:text-5xl font-extrabold tracking-tight">
+                    Emergency Quick Action
+                </h1>
+<p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">
+                    Rapid AI-assisted emergency response. Stay calm. Help is seconds away.
+                </p>
+</div>
+<!-- Countdown Visualizer -->
+<div class="flex flex-col items-center justify-center mb-10">
+<div class="relative flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-4 border-primary/20"></div>
+<div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin" style="animation-duration: 3s; animation-timing-function: linear;"></div>
+<div class="flex flex-col items-center justify-center w-32 h-32 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm">
+<span class="text-4xl font-black text-primary">03</span>
+<span class="text-xs uppercase tracking-widest font-bold text-primary/80">Seconds</span>
+</div>
+</div>
+<p class="mt-4 text-sm font-semibold text-primary/80 animate-pulse">AUTOTRIGGER ACTIVE</p>
+</div>
+<!-- Massive Action Buttons -->
+<div class="flex flex-col gap-4 w-full px-4">
+<button class="group flex items-center justify-between w-full h-24 px-8 rounded-2xl bg-primary text-white hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-primary/20">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl">phone_in_talk</span>
+<div class="text-left">
+<span class="block text-xs uppercase tracking-widest font-bold opacity-80">Priority 1</span>
+<span class="text-xl md:text-2xl font-black uppercase">Call 911 / 112</span>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between w-full h-24 px-8 rounded-2xl bg-slate-900 dark:bg-slate-800 border-2 border-primary text-white hover:bg-primary transition-all active:scale-95 shadow-lg">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white">group</span>
+<div class="text-left">
+<span class="block text-xs uppercase tracking-widest font-bold text-primary group-hover:text-white/80">Priority 2</span>
+<span class="text-xl md:text-2xl font-black uppercase">Send SOS to Contacts</span>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between w-full h-24 px-8 rounded-2xl bg-slate-900 dark:bg-slate-800 border-2 border-primary text-white hover:bg-primary transition-all active:scale-95 shadow-lg">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white">my_location</span>
+<div class="text-left">
+<span class="block text-xs uppercase tracking-widest font-bold text-primary group-hover:text-white/80">Priority 3</span>
+<span class="text-xl md:text-2xl font-black uppercase">Broadcast Location</span>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward_ios</span>
+</button>
+</div>
+<!-- Footer Meta Info -->
+<div class="mt-12 flex items-center justify-center gap-8 px-4 opacity-70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">gps_fixed</span>
+<span class="text-xs font-bold uppercase tracking-wider">GPS Accurate: 4m</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">battery_charging_full</span>
+<span class="text-xs font-bold uppercase tracking-wider">Power: 88%</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">wifi</span>
+<span class="text-xs font-bold uppercase tracking-wider">Signal: Strong</span>
+</div>
+</div>
+<button class="mt-8 text-primary/60 hover:text-primary text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">cancel</span>
+                Cancel Emergency Trigger
+            </button>
+</div>
+</main>
+<!-- Bottom Info Sheet (Partial Preview) -->
+<div class="mt-auto w-full bg-slate-100 dark:bg-slate-900/50 border-t border-primary/10 p-6 flex flex-wrap justify-around items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">medical_information</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary uppercase">Current Patient</p>
+<p class="font-bold">John Doe (A+)</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">ecg</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary uppercase">Heart Rate</p>
+<p class="font-bold">72 BPM</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary uppercase">Security AI</p>
+<p class="font-bold">Monitoring Active</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

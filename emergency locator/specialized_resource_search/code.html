@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Specialized Resource Search - Emergency Resource Locator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 lg:px-10 py-3 bg-white dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">emergency_share</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">ER-Locator</h2>
+</div>
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800/50">
+<div class="text-slate-400 dark:text-slate-500 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500" placeholder="Search facilities..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Hospitals</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Resources</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Oxygen</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Ambulance</a>
+</nav>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-red-600 hover:bg-red-700 text-white text-sm font-bold shadow-lg shadow-red-600/20">
+<span class="material-symbols-outlined mr-2 text-[18px]">sos</span>
+                        SOS Emergency
+                    </button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar circle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6ynTDROOHPXVEQPfX7TqPVcwcxWEcTozTDLH4AX5D442uK5jj1x9dakEdzrZ_AtWqxuiMpBN0-I3ZRpbrFxk6p3n3A152LqDdMrs67cL5N5v5r6XJg9WfxtKF2Ih3TWu3dZw212hdFN_N7CCKLnigZxvvK9F54HNvUYrXVoJ7vADMMLtafEoKlzMMFcvSMzikq7GYKl5jxTq9fKp-0i4ess1d8ZW_f4IeoAq5uvNHHbBWBWgiVhuXLw1FMGUc_w9G0nVi9bFPu6I");'></div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Sidebar Sidebar -->
+<aside class="w-64 hidden xl:flex flex-col border-r border-slate-200 dark:border-slate-800 p-4 shrink-0 bg-white dark:bg-background-dark/50">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-1">
+<p class="px-3 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Main Menu</p>
+<nav class="flex flex-col gap-1 mt-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1">manage_search</span>
+<span class="text-sm font-semibold">Live Search</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-[22px]">favorite</span>
+<span class="text-sm font-medium">Saved Locations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-[22px]">history</span>
+<span class="text-sm font-medium">Recent Activity</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<p class="px-3 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Resource Filters</p>
+<div class="px-3 mt-3 flex flex-col gap-4">
+<div>
+<p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">Category</p>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input checked="" class="rounded text-primary border-slate-300 dark:border-slate-700 bg-transparent" type="checkbox"/>
+<span>Blood Banks</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input checked="" class="rounded text-primary border-slate-300 dark:border-slate-700 bg-transparent" type="checkbox"/>
+<span>Oxygen Suppliers</span>
+</label>
+</div>
+</div>
+<div>
+<p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">Oxygen Type</p>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input class="text-primary border-slate-300 dark:border-slate-700 bg-transparent" name="oxy" type="radio"/>
+<span>Cylinders</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input class="text-primary border-slate-300 dark:border-slate-700 bg-transparent" name="oxy" type="radio"/>
+<span>Concentrators</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="flex-1 flex flex-col h-full bg-slate-50 dark:bg-background-dark overflow-y-auto">
+<!-- Hero Section -->
+<div class="p-6 lg:p-10 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<div class="flex items-center gap-2 text-primary mb-2">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="text-xs font-bold uppercase tracking-widest">AI-Verified Listings</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-3xl lg:text-4xl font-black tracking-tight mb-2">Blood Bank &amp; Oxygen Search</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">Real-time availability of life-saving resources near you. Updated every 5 minutes by connected facility APIs.</p>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-xs font-bold">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+                                System Live: 1,402 Active Nodes
+                            </div>
+</div>
+<!-- Quick Blood Type Filter -->
+<div class="mt-8 flex flex-col gap-3">
+<p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Select Blood Type Required</p>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-primary bg-primary/10 text-primary font-bold text-sm">A+</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">A-</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">B+</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">B-</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">O+</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">O-</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">AB+</button>
+<button class="flex h-10 shrink-0 items-center justify-center px-5 rounded-lg border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 font-bold text-sm hover:border-primary/50">AB-</button>
+</div>
+</div>
+</div>
+<!-- Search Results Grid -->
+<div class="p-6 lg:p-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Listing Card 1 -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-black uppercase bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-500 dark:text-slate-400">Blood Bank</span>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Updated: 2 mins ago</p>
+</div>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">City General Red Cross</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                0.8 miles away • Westview District
+                            </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<div class="px-3 py-1 rounded bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold border border-green-500/20">A+ : 12 Units</div>
+<div class="px-3 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold">O- : 0 Units</div>
+<div class="px-3 py-1 rounded bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold border border-green-500/20">B+ : 4 Units</div>
+</div>
+<div class="mt-auto flex gap-2">
+<button class="flex-1 bg-primary text-white text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">call</span> Call Facility
+                                </button>
+<button class="px-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+</button>
+</div>
+</div>
+<!-- Listing Card 2 -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">air</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-black uppercase bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-500 dark:text-slate-400">Oxygen Hub</span>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Updated: 15 mins ago</p>
+</div>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">St. Mary's Medical Supplies</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                2.4 miles away • Downtown South
+                            </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<div class="px-3 py-1 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold border border-blue-500/20">Cylinders (40L) : 8 Avail.</div>
+<div class="px-3 py-1 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold border border-blue-500/20">Concentrators : 2 Avail.</div>
+</div>
+<div class="mt-auto flex gap-2">
+<button class="flex-1 bg-primary text-white text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">shopping_cart</span> Reserve Now
+                                </button>
+<button class="px-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</button>
+</div>
+</div>
+<!-- Listing Card 3 -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col border-dashed border-primary/40 relative">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[9px] font-black uppercase px-2 py-1 rounded">Fastest Delivery</div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-black uppercase bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-500 dark:text-slate-400">Mobile Unit</span>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Updated: Live Now</p>
+</div>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight mb-1">VitalO2 Mobile Fleet</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                Active in your area • 12 min delivery
+                            </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<div class="px-3 py-1 rounded bg-primary/10 text-primary text-xs font-bold border border-primary/20">10L Cylinders: In Stock</div>
+<div class="px-3 py-1 rounded bg-primary/10 text-primary text-xs font-bold border border-primary/20">Home Setup Kit</div>
+</div>
+<div class="mt-auto flex gap-2">
+<button class="flex-1 bg-primary text-white text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">send</span> Request Dispatch
+                                </button>
+<button class="px-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Listing Card 4 -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-black uppercase bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-500 dark:text-slate-400">Blood Bank</span>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Updated: 45 mins ago</p>
+</div>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">Hope Charity Hospital</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                3.1 miles away • East Ridge
+                            </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<div class="px-3 py-1 rounded bg-orange-500/10 text-orange-600 dark:text-orange-400 text-xs font-bold border border-orange-500/20">A+ : 2 Units</div>
+<div class="px-3 py-1 rounded bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold border border-green-500/20">AB+ : 15 Units</div>
+</div>
+<div class="mt-auto flex gap-2">
+<button class="flex-1 bg-primary text-white text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">call</span> Call Facility
+                                </button>
+<button class="px-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+</button>
+</div>
+</div>
+<!-- Listing Card 5 -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">air</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-black uppercase bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-500 dark:text-slate-400">Oxygen Depot</span>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Updated: 1 hour ago</p>
+</div>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">Industrial Gas Corp</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                5.2 miles away • Industrial Zone
+                            </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<div class="px-3 py-1 rounded bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold border border-green-500/20">Liquid O2 Bulk : High Stock</div>
+<div class="px-3 py-1 rounded bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-bold border border-red-500/20">Cylinders : Out of Stock</div>
+</div>
+<div class="mt-auto flex gap-2">
+<button class="flex-1 border-2 border-primary text-primary text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">visibility</span> View Full Catalog
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Map View Placeholder (Right Side) -->
+<div class="w-1/3 hidden 2xl:block border-l border-slate-200 dark:border-slate-800 relative bg-slate-200 dark:bg-slate-900">
+<div class="absolute inset-0 bg-cover bg-center opacity-50 dark:opacity-30" data-alt="Abstract map visualization showing hospital markers" data-location="London" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSWChgnjbvQLejxKa3aL840pr4lXR1F4OVDfOrFKvFwiYhVIFYkRisFNgWBRJxAyx6UbitGkAu4THeuiMfbIqrDwY4LLQq5Ar0w5K79Ay3x7nIo71WAfo7qB--rcJVPtcF6awpqLNpE_MmvEKzcFEcuHMM9AUOrHhrOAv0ugt5Txd_tPVFy9c35Jq54PvGTrRf2OVVGr7kB0iT2wxsTeqA-ujge5gud3xAvp3fKyZrh60tZhigQvwhRF0edZIPMOoopIhexFF3xfo')"></div>
+<div class="relative p-6 flex flex-col h-full">
+<div class="bg-white/90 dark:bg-background-dark/90 backdrop-blur-md p-4 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700">
+<p class="text-sm font-bold mb-2">Nearby Availability</p>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-xs">
+<span class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-green-500"></span> 
+                                        Critical Stock
+                                    </span>
+<span class="font-mono">8 Locations</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-orange-500"></span> 
+                                        Low Stock
+                                    </span>
+<span class="font-mono">14 Locations</span>
+</div>
+</div>
+</div>
+<div class="mt-auto flex justify-center pb-10">
+<button class="bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-6 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2">
+<span class="material-symbols-outlined">fullscreen</span>
+                                Expand Interactive Map
+                            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Floating Action for Mobile (Hidden on Desktop) -->
+<div class="xl:hidden fixed bottom-6 right-6 flex flex-col gap-3">
+<button class="size-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-[30px]">filter_alt</span>
+</button>
+<button class="size-14 rounded-full bg-red-600 text-white shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-[30px]">sos</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>
